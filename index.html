@@ -18,7 +18,9 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    [href*="netlify"], .netlify-badge, [data-netlify-badge], a[href*="netlify.com"] img { display: none !important; }
+    [href*="netlify"], .netlify-badge, [data-netlify-badge], a[href*="netlify.com"] img,
+    [href*="netlify.com"], div[style*="netlify"], iframe[src*="netlify"],
+    a[href*="netlify.com"][rel], footer a[href*="netlify"] { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -227,7 +229,8 @@
       font-size: 16px;
       line-height: 1.8;
       color: var(--text);
-      max-width: 800px;
+      max-width: 100%;
+      text-align: justify;
     }
 
     .bio p { margin-bottom: 16px; }
@@ -811,20 +814,21 @@
           <h3><span class="icon">&#128300;</span> Research</h3>
           <ul>
             <li>Ph.D. research in computer vision at Kyushu Institute of Technology, Japan.</li>
-            <li>2 years of R&amp;D in UAV flight control software at Viettel Group.</li>
             <li>Applying AI to education, including teaching enhancement and learning innovation, at FPT University.</li>
           </ul>
         </div>
         <div class="exp-card">
           <h3><span class="icon">&#128188;</span> Industry</h3>
           <ul>
-            <li>9 years at Viettel Group as an R&amp;D Specialist, handling evaluation and coordination of R&amp;D projects in high-tech industry, telecommunications, and IT, along with intellectual property operations focused on patent registration.</li>
+            <li>11 years at Viettel Group: 2 years in UAV flight control software R&amp;D, followed by 9 years as an R&amp;D Specialist handling evaluation and coordination of R&amp;D projects in high-tech industry, telecommunications, and IT, along with intellectual property operations focused on patent registration.</li>
           </ul>
         </div>
         <div class="exp-card">
           <h3><span class="icon">&#127891;</span> Teaching</h3>
           <ul>
             <li>Lecturer at FPT University, teaching Computer Fundamentals and leading the FE AI-Lab for AI applications in education.</li>
+            <li>Lecturer in the Master of Software Engineering program at FPT School of Business (FSB).</li>
+            <li>Supervisor of undergraduate capstone projects (SE major) and master&rsquo;s theses at FPT University and FSB.</li>
             <li>Internal lecturer on intellectual property at Viettel Group.</li>
           </ul>
         </div>
