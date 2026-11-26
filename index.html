@@ -18,6 +18,7 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    [href*="netlify"], .netlify-badge, [data-netlify-badge], a[href*="netlify.com"] img { display: none !important; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -670,29 +671,54 @@
     .nav-clock .clock-time { font-weight: 700; color: var(--dark); font-size: 13px; }
     @media (max-width: 600px) { .nav-clock { display: none; } }
 
+    /* ===== SCROLL TO TOP ===== */
+    .scroll-top {
+      position: fixed; bottom: 32px; right: 32px; z-index: 99;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--accent); color: white; border: none;
+      font-size: 20px; cursor: pointer; opacity: 0;
+      transform: translateY(16px); transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0,85,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .scroll-top.show { opacity: 1; transform: translateY(0); }
+    .scroll-top:hover { background: #0044cc; transform: translateY(-2px); }
+
+    /* ===== QUOTE ===== */
+    .quote-section {
+      text-align: center; padding: 48px 24px; margin: 0 0 60px;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .quote-text {
+      font-size: 18px; font-style: italic; color: var(--text);
+      max-width: 640px; margin: 0 auto 12px; line-height: 1.7;
+    }
+    .quote-author { font-size: 13px; color: var(--muted); font-weight: 600; }
+
     /* ===== RESEARCH ===== */
-    .research-card {
-      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
-      overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
+    .research-item {
+      display: grid; grid-template-columns: 280px 1fr; gap: 40px;
+      align-items: start;
     }
-    .research-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
     .research-img {
-      width: 100%; height: 240px; object-fit: cover;
-      border-bottom: 1px solid var(--border);
+      width: 100%; border-radius: 10px; border: 1px solid var(--border);
     }
-    .research-body { padding: 24px; }
-    .research-body h3 { font-size: 18px; margin-bottom: 6px; color: var(--dark); }
-    .research-tag {
-      display: inline-block; background: var(--accent-light); color: var(--accent);
-      padding: 3px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-bottom: 12px;
+    .research-content {}
+    .research-tags {
+      display: flex; gap: 8px; margin-bottom: 14px; text-transform: uppercase;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--muted);
     }
-    .research-body p { font-size: 14px; color: var(--muted); line-height: 1.7; }
-    .research-highlights {
-      display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;
+    .research-tags span::after { content: ' \00B7'; margin-left: 8px; }
+    .research-tags span:last-child::after { content: ''; }
+    .research-content h3 { font-size: 20px; color: var(--dark); margin-bottom: 12px; line-height: 1.4; }
+    .research-content p { font-size: 14px; color: var(--muted); line-height: 1.75; }
+    .research-pubs {
+      margin-top: 14px; font-size: 13px; color: var(--text); font-weight: 500;
     }
-    .research-highlights span {
-      background: var(--light); padding: 6px 14px; border-radius: 8px;
-      font-size: 12px; font-weight: 600; color: var(--text);
+    .research-pubs span { color: var(--muted); font-weight: 400; }
+    @media (max-width: 900px) {
+      .research-item { grid-template-columns: 1fr; gap: 20px; }
+      .research-img { max-width: 400px; }
     }
 
     html { scroll-behavior: smooth; }
@@ -745,20 +771,20 @@
 
       <div class="stats-row reveal">
         <div class="stat-card">
-          <span class="number">15+</span>
-          <span class="label">Years in Computer Vision</span>
+          <span class="number">Ph.D</span>
+          <span class="label">Kyushu Inst. of Technology</span>
+        </div>
+        <div class="stat-card">
+          <span class="number">11+</span>
+          <span class="label">Years in IT Industry</span>
+        </div>
+        <div class="stat-card">
+          <span class="number">2</span>
+          <span class="label">Research Fields</span>
         </div>
         <div class="stat-card">
           <span class="number">8</span>
           <span class="label">Publications</span>
-        </div>
-        <div class="stat-card">
-          <span class="number">3</span>
-          <span class="label">Languages</span>
-        </div>
-        <div class="stat-card">
-          <span class="number">Ph.D</span>
-          <span class="label">Kyushu Inst. of Technology</span>
         </div>
       </div>
 
@@ -785,7 +811,7 @@
         <div class="exp-card">
           <h3><span class="icon">&#128300;</span> Research</h3>
           <ul>
-            <li>Over 15 years of experience in computer vision and digital image processing.</li>
+            <li>Extensive research experience in computer vision and digital image processing.</li>
             <li>2 years of experience in applying AI to education, including teaching enhancement and learning innovation.</li>
           </ul>
         </div>
@@ -900,20 +926,17 @@
         <div class="section-line"></div>
       </div>
 
-      <div class="research-card reveal">
+      <div class="research-item reveal">
         <img src="road-detection.jpg" alt="Road Vanishing Point Detection" class="research-img">
-        <div class="research-body">
-          <span class="research-tag">Computer Vision</span>
+        <div class="research-content">
+          <div class="research-tags">
+            <span>Computer Vision</span>
+            <span>Road Detection</span>
+          </div>
           <h3>Vanishing Point Detection for Unstructured Roads</h3>
-          <p>
-            Estimating the vanishing point from a single road image without prior camera parameters is a challenging problem. Traditional edge-based methods work well on structured roads with clear lane markings but fail on unstructured roads lacking defined boundaries. This research proposes a novel local soft voting method that significantly reduces the number of scanning pixels while introducing a new vanishing point candidate region to improve estimation accuracy. Tested on 1,000 road images with large variations in color, texture, lighting, and environment, the method demonstrates both high efficiency and effectiveness compared to previous texture-based approaches.
-          </p>
-          <div class="research-highlights">
-            <span>Vanishing Point</span>
-            <span>Texture Analysis</span>
-            <span>Gabor Wavelet</span>
-            <span>Soft Voting</span>
-            <span>1,000 Images</span>
+          <p>A novel local soft voting method for estimating vanishing points from single road images without prior camera parameters. The approach reduces computational cost while improving accuracy on unstructured roads where traditional edge-based methods fail.</p>
+          <div class="research-pubs">
+            IEICE Trans. Inf. &amp; Syst. (2014) <span>&middot;</span> RIVF (2013)
           </div>
         </div>
       </div>
@@ -986,6 +1009,12 @@
       </div>
     </section>
 
+    <!-- QUOTE -->
+    <div class="quote-section reveal">
+      <p class="quote-text">&ldquo;The best way to predict the future is to create it.&rdquo;</p>
+      <span class="quote-author">&mdash; Peter Drucker</span>
+    </div>
+
     <!-- CONTACT -->
     <section class="section" id="contact">
       <div class="section-header reveal">
@@ -1017,6 +1046,9 @@
     </section>
 
   </div>
+
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&uarr;</button>
 
   <!-- FOOTER -->
   <footer>
@@ -1065,7 +1097,8 @@
     updateClock();
     setInterval(updateClock, 1000);
 
-    // Active nav
+    // Active nav + scroll-to-top
+    const scrollBtn = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
       let cur = '';
       document.querySelectorAll('section').forEach(s => {
@@ -1074,6 +1107,7 @@
       document.querySelectorAll('.nav-links a').forEach(a => {
         a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
       });
+      scrollBtn.classList.toggle('show', window.scrollY > 400);
     });
   </script>
 
