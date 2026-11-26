@@ -199,7 +199,7 @@
     /* ===== ABOUT STATS ===== */
     .stats-row {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       margin-bottom: 40px;
     }
@@ -700,13 +700,8 @@
 
     /* ===== RESEARCH ===== */
     .research-item {
-      display: grid; grid-template-columns: 280px 1fr; gap: 40px;
-      align-items: start;
+      border: 1px solid var(--border); border-radius: 12px; padding: 28px;
     }
-    .research-img {
-      width: 100%; border-radius: 10px; border: 1px solid var(--border);
-    }
-    .research-content {}
     .research-tags {
       display: flex; gap: 8px; margin-bottom: 14px; text-transform: uppercase;
       font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--muted);
@@ -714,15 +709,17 @@
     .research-tags span::after { content: ' \00B7'; margin-left: 8px; }
     .research-tags span:last-child::after { content: ''; }
     .research-content h3 { font-size: 20px; color: var(--dark); margin-bottom: 12px; line-height: 1.4; }
-    .research-content p { font-size: 14px; color: var(--muted); line-height: 1.75; }
+    .research-content p { font-size: 14px; color: var(--muted); line-height: 1.75; text-align: justify; }
     .research-pubs {
       margin-top: 14px; font-size: 13px; color: var(--text); font-weight: 500;
     }
     .research-pubs span { color: var(--muted); font-weight: 400; }
-    @media (max-width: 900px) {
-      .research-item { grid-template-columns: 1fr; gap: 20px; }
-      .research-img { max-width: 400px; }
+    .research-status {
+      display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+      color: #0a8f3c; background: #e6f9ed; padding: 3px 10px; border-radius: 12px;
+      margin-bottom: 12px; text-transform: uppercase;
     }
+    .research-item + .research-item { margin-top: 24px; }
 
     html { scroll-behavior: smooth; }
   </style>
@@ -778,12 +775,8 @@
           <span class="label">Kyushu Inst. of Technology</span>
         </div>
         <div class="stat-card">
-          <span class="number">11+</span>
-          <span class="label">Years in R&amp;D Management</span>
-        </div>
-        <div class="stat-card">
-          <span class="number">2</span>
-          <span class="label">Research Fields</span>
+          <span class="number">11</span>
+          <span class="label">Years in Industry</span>
         </div>
         <div class="stat-card">
           <span class="number">8</span>
@@ -793,7 +786,7 @@
 
       <div class="bio reveal">
         <p>Dr. Trung Hieu Bui is an IT Lecturer at FPT University in Hanoi, Vietnam, where he teaches Computing Fundamentals and leads the FE AI-Lab - a research group dedicated to applying artificial intelligence to real-world challenges.</p>
-        <p>With a Ph.D. in computer vision from Kyushu Institute of Technology, Japan, and 11 years at Viettel Group in UAV software development, R&amp;D coordination, and intellectual property, his career bridges deep technical research and industry leadership, now channeled into bringing intelligent systems into teaching, learning, and broader real-world applications.</p>
+        <p>He holds a Ph.D. in computer vision from Kyushu Institute of Technology (KIT), Japan. Before joining FPT University, he worked at Viettel Group for 11 years, including two years in UAV flight control software development and nine years as an R&amp;D Specialist coordinating research projects and managing patent registration. His current research interest is in applying AI to education.</p>
       </div>
 
       <div class="info-chips reveal">
@@ -820,7 +813,8 @@
         <div class="exp-card">
           <h3><span class="icon">&#128188;</span> Industry</h3>
           <ul>
-            <li>11 years at Viettel Group: 2 years in UAV flight control software R&amp;D, followed by 9 years as an R&amp;D Specialist handling evaluation and coordination of R&amp;D projects in high-tech industry, telecommunications, and IT, along with intellectual property operations focused on patent registration.</li>
+            <li>2 years in UAV flight control software R&amp;D at Viettel Group.</li>
+            <li>9 years as R&amp;D Specialist at Viettel Group, coordinating R&amp;D projects and managing patent registration.</li>
           </ul>
         </div>
         <div class="exp-card">
@@ -828,7 +822,7 @@
           <ul>
             <li>Lecturer at FPT University, teaching Computer Fundamentals and leading the FE AI-Lab for AI applications in education.</li>
             <li>Lecturer in the Master of Software Engineering program at FPT School of Business (FSB).</li>
-            <li>Supervisor of undergraduate capstone projects (SE major) and master&rsquo;s theses at FPT University and FSB.</li>
+            <li>Supervisor of undergraduate capstone projects (SE major) at FPT University and master&rsquo;s theses (SE, AI-oriented) at FSB.</li>
             <li>Internal lecturer on intellectual property at Viettel Group.</li>
           </ul>
         </div>
@@ -931,7 +925,6 @@
       </div>
 
       <div class="research-item reveal">
-        <img src="road-detection.png" alt="Road Vanishing Point Detection" class="research-img">
         <div class="research-content">
           <div class="research-tags">
             <span>Computer Vision</span>
@@ -942,6 +935,18 @@
           <div class="research-pubs">
             Related publications: <a href="#publications" style="color:var(--accent);font-weight:600;text-decoration:none;">View all &rarr;</a>
           </div>
+        </div>
+      </div>
+
+      <div class="research-item reveal">
+        <div class="research-content">
+          <span class="research-status">Ongoing</span>
+          <div class="research-tags">
+            <span>AI in Education</span>
+            <span>Flipped Classroom</span>
+          </div>
+          <h3>AI-Integrated Flipped Classroom Model for Higher Education</h3>
+          <p>This ongoing research investigates the implementation of a flipped classroom model at FPT University, where students engage with theoretical content independently through digital materials, videos, and AI-assisted tools before class, while in-class time is dedicated to discussion, hands-on practice, project-based learning, and critical debate under instructor guidance. The study aims to evaluate the effectiveness of this approach in improving student engagement, learning outcomes, and self-directed learning skills in computing education.</p>
         </div>
       </div>
     </section>
