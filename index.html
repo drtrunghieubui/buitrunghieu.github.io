@@ -17,6 +17,18 @@
       --white: #fff;
     }
 
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --dark: #f0f0f0;
+      --text: #ccc;
+      --muted: #999;
+      --light: #1a1a2e;
+      --border: #2a2a3e;
+      --accent: #4d8bff;
+      --accent-light: #1a2744;
+      --white: #0f0f1a;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     [href*="netlify"], .netlify-badge, [data-netlify-badge], a[href*="netlify.com"] img,
     [href*="netlify.com"], div[style*="netlify"], iframe[src*="netlify"],
@@ -39,6 +51,15 @@
       z-index: 100;
       border-bottom: 1px solid var(--border);
     }
+    [data-theme="dark"] nav { background: rgba(15,15,26,0.92); }
+    [data-theme="dark"] .btn-primary { background: var(--accent); }
+    [data-theme="dark"] .btn-outline { border-color: var(--border); color: var(--dark); }
+    [data-theme="dark"] .exp-card { background: var(--light); border-color: var(--border); }
+    [data-theme="dark"] .contact-card { background: var(--light); }
+    [data-theme="dark"] .pub-entry { border-color: var(--border); }
+    [data-theme="dark"] .research-item { border-color: var(--border); }
+    [data-theme="dark"] .scroll-top { background: var(--accent); }
+    [data-theme="dark"] footer { background: var(--light); border-color: var(--border); }
 
     .nav-inner {
       max-width: 1100px;
@@ -673,6 +694,12 @@
     }
     .nav-clock .clock-time { font-weight: 700; color: var(--dark); font-size: 13px; }
     @media (max-width: 600px) { .nav-clock { display: none; } }
+    .theme-toggle {
+      background: none; border: 1px solid var(--border); border-radius: 8px;
+      padding: 6px 10px; cursor: pointer; font-size: 16px; line-height: 1;
+      color: var(--text); transition: all 0.2s; margin-left: 12px;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
 
     /* ===== SCROLL TO TOP ===== */
     .scroll-top {
@@ -768,6 +795,7 @@
         <a href="#contact">Contact</a>
       </div>
       <div class="nav-clock" id="navClock"></div>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark mode">&#9790;</button>
     </div>
   </nav>
 
@@ -1111,6 +1139,9 @@
             <a href="https://scholar.google.co.kr/citations?hl=en&user=FrIIRWAAAAAJ" target="_blank" class="contact-link-item">
               Google Scholar <span class="arrow">&rarr;</span>
             </a>
+            <a href="https://orcid.org/0009-0004-8129-3120" target="_blank" class="contact-link-item">
+              ORCID <span class="arrow">&rarr;</span>
+            </a>
             <a href="https://www.researchgate.net/profile/Trung-Hieu-Bui" target="_blank" class="contact-link-item">
               ResearchGate <span class="arrow">&rarr;</span>
             </a>
@@ -1139,7 +1170,7 @@
           <a href="#publications">Publications</a>
           <a href="#contact">Contact</a>
         </div>
-        <span>&copy; 2026 Trung Hieu Bui. All rights reserved.</span>
+        <span>&copy; 2026 Trung Hieu Bui. All rights reserved. &nbsp;|&nbsp; Last updated: Nov 2026</span>
       </div>
     </div>
   </footer>
@@ -1173,6 +1204,23 @@
     }
     updateClock();
     setInterval(updateClock, 1000);
+
+    // Dark mode
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? '' : 'dark');
+      document.getElementById('themeToggle').innerHTML = isDark ? '&#9790;' : '&#9728;';
+      localStorage.setItem('theme', isDark ? 'light' : 'dark');
+    }
+    // Load saved theme
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.getElementById('themeToggle').innerHTML = '&#9728;';
+      }
+    })();
 
     // Active nav + scroll-to-top
     const scrollBtn = document.getElementById('scrollTop');
