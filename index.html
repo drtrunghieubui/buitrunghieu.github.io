@@ -721,6 +721,36 @@
     }
     .research-item + .research-item { margin-top: 24px; }
 
+    /* ===== SCROLL INDICATOR ===== */
+    .scroll-indicator {
+      display: flex;
+      justify-content: center;
+      padding: 0 0 40px;
+    }
+    .scroll-indicator a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .scroll-indicator a:hover { color: var(--accent); }
+    .scroll-indicator .arrow {
+      font-size: 20px;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(8px); }
+      60% { transform: translateY(4px); }
+    }
+
     html { scroll-behavior: smooth; }
   </style>
 </head>
@@ -751,7 +781,7 @@
         <p class="vn-name">TS. B&ugrave;i Trung Hi&#7871;u</p>
         <p class="role">IT Lecturer &amp; Lead of FE AI-Lab, FPT University, Hanoi Campus.<br>Specializing in Computer Vision and AI in Education.</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Get in touch</a>
+          <a href="#research" class="btn btn-primary">View research</a>
           <a href="#publications" class="btn btn-outline">View publications</a>
         </div>
       </div>
@@ -761,6 +791,14 @@
         </div>
       </div>
     </section>
+
+    <!-- SCROLL INDICATOR -->
+    <div class="scroll-indicator">
+      <a href="#about">
+        <span>Scroll</span>
+        <span class="arrow">&darr;</span>
+      </a>
+    </div>
 
     <!-- ABOUT -->
     <section class="section" id="about">
@@ -1036,8 +1074,8 @@
           <h3>Reach out</h3>
           <a href="mailto:hieubt18@fe.edu.vn" class="email-link">hieubt18@fe.edu.vn</a>
           <div class="address">
-            Hoa Lac Hi-Tech Park,<br>
-            Hanoi, Vietnam
+#L606, Alpha Building, Hoa Lac Hi&#8209;Tech Park,<br>
+            FPT University, Hanoi, Vietnam
           </div>
         </div>
         <div class="contact-card">
